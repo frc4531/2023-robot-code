@@ -12,6 +12,7 @@ public class CompressorSubsystem extends SubsystemBase {
 
     public CompressorSubsystem() {
         compressor = new Compressor(0, PneumaticsModuleType.CTREPCM);
+        compressor.enableAnalog(0, 115);
         addChild("Compressor",compressor);
  
 

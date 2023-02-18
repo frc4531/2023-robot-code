@@ -31,6 +31,13 @@ public class ClawGripSubsystem extends SubsystemBase {
 
     }
 
+    public void CloseGrip() {
+        clawGripSolenoid.set(DoubleSolenoid.Value.kForward);
+    }
+
+    public void OpenGrip() {
+        clawGripSolenoid.set(DoubleSolenoid.Value.kReverse);
+    }
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
