@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 
@@ -34,17 +35,19 @@ public class DriveSubsystem extends SubsystemBase {
 
         DriveEncoder = new Encoder(0, 1, false, EncodingType.k4X);
 
-        shiftSolenoid = new DoubleSolenoid(1, PneumaticsModuleType.REVPH, 0, 1);
+        shiftSolenoid = new DoubleSolenoid(PneumaticsModuleType.REVPH, 2, 3);
         addChild("ShiftSolenoid", shiftSolenoid);
     
 
-        frontLeft = new WPI_TalonFX(6);
+        frontLeft = new WPI_TalonFX(5);
+        frontLeft.setInverted(true);
 
-        frontRight = new WPI_TalonFX(7);
+        frontRight = new WPI_TalonFX(6);
     
-        backLeft = new WPI_TalonFX(8);
+        backLeft = new WPI_TalonFX(7);
+        backLeft.setInverted(true);
     
-        backRight = new WPI_TalonFX(9);
+        backRight = new WPI_TalonFX(8);
     
     
 
@@ -98,6 +101,14 @@ public class DriveSubsystem extends SubsystemBase {
 
     public void TankDriveRobot(double Forward, double Turn) {
         TankDriveTrain.arcadeDrive(Forward, Turn);
+    }
+
+    public void shiftToTank() {
+        shiftSolenoid.set(Value.kReverse);
+    }
+
+    public void shiftToMecanum() {
+        shiftSolenoid.set(Value.kForward);
     }
     // Put methods for controlling this subsystem
     // here. Call these from Commands.

@@ -10,7 +10,7 @@ public class LinearLiftSubsystem extends SubsystemBase {
     private WPI_TalonFX linearPulleyMotor;
 
     public LinearLiftSubsystem() {
-        linearPulleyMotor = new WPI_TalonFX(10);
+        linearPulleyMotor = new WPI_TalonFX(9);
  
  
 

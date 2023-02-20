@@ -10,16 +10,16 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 public class ClawSpinSubsystem extends SubsystemBase {
 
-    private CANSparkMax clawMotorLeft;
-    private CANSparkMax clawMotorRight;
+    //private CANSparkMax clawMotorLeft;
+    //private CANSparkMax clawMotorRight;
 
  
     public ClawSpinSubsystem() {
-        clawMotorLeft = new CANSparkMax(2,MotorType.kBrushless);
-        clawMotorLeft.setInverted(false);
+        //clawMotorLeft = new CANSparkMax(2,MotorType.kBrushless);
+        //clawMotorLeft.setInverted(false);
 
-        clawMotorRight = new CANSparkMax(3,MotorType.kBrushless);
-        clawMotorRight.setInverted(true);
+        //clawMotorRight = new CANSparkMax(3,MotorType.kBrushless);
+        //clawMotorRight.setInverted(true);
 
 
     }
@@ -37,8 +37,8 @@ public class ClawSpinSubsystem extends SubsystemBase {
     }
 
     public void SetClawMotors(double Speed) {
-        clawMotorLeft.set(Speed);
-        clawMotorRight.set(Speed);
+        //clawMotorLeft.set(Speed);
+        //clawMotorRight.set(Speed);
     }
 
     // Put methods for controlling this subsystem

@@ -72,7 +72,7 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     // Create some buttons
-    final JoystickButton driveShiftButton = new JoystickButton(driveStick, 1);        
+    final JoystickButton driveShiftButton = new JoystickButton(driveStick, 7);        
     driveShiftButton.toggleOnTrue(new DriveShift( m_driveSubsystem ).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
                         
     final JoystickButton linearLiftUpButton = new JoystickButton(nesStick, 1);        

@@ -12,7 +12,7 @@ public class ClawGripSubsystem extends SubsystemBase {
 
 
     public ClawGripSubsystem() {
-        clawGripSolenoid = new DoubleSolenoid(1, PneumaticsModuleType.REVPH, 2, 3);
+        clawGripSolenoid = new DoubleSolenoid(PneumaticsModuleType.REVPH, 0, 1);
         addChild("ClawGripSolenoid", clawGripSolenoid);
  
 
