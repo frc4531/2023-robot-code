@@ -70,22 +70,22 @@ public class RobotContainer {
     final JoystickButton driveShiftButton = new JoystickButton(driveStick, 7);        
     driveShiftButton.toggleOnTrue(new DriveShift( m_driveSubsystem ).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
                         
-    final JoystickButton linearLiftUpButton = new JoystickButton(nesStick, 1);        
+    final JoystickButton linearLiftUpButton = new JoystickButton(nesStick, 7);        
     linearLiftUpButton.whileTrue(new LinearLiftUp( m_linearLiftSubsystem ).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
                         
-    final JoystickButton linearLiftDownButton = new JoystickButton(nesStick, 2);        
+    final JoystickButton linearLiftDownButton = new JoystickButton(nesStick, 8);        
     linearLiftDownButton.whileTrue(new LinearLiftDown( m_linearLiftSubsystem ).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
                         
-    final JoystickButton scissorLiftInButton = new JoystickButton(nesStick, 3);        
+    final JoystickButton scissorLiftInButton = new JoystickButton(nesStick, 12);        
     scissorLiftInButton.whileTrue(new ScissorLiftIn( m_scissorLiftSubsystem ).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
                         
-    final JoystickButton scissorLiftOutButton = new JoystickButton(nesStick, 4);        
+    final JoystickButton scissorLiftOutButton = new JoystickButton(nesStick, 13);        
     scissorLiftOutButton.whileTrue(new ScissorLiftOut( m_scissorLiftSubsystem ).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
                         
-    final JoystickButton clawGripInButton = new JoystickButton(nesStick, 5);        
+    final JoystickButton clawGripInButton = new JoystickButton(nesStick, 9);        
     clawGripInButton.onTrue(new ClawGripIn( m_clawGripSubsystem ).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
                         
-    final JoystickButton clawGripOutButton = new JoystickButton(nesStick, 6);        
+    final JoystickButton clawGripOutButton = new JoystickButton(nesStick, 10);        
     clawGripOutButton.onTrue(new ClawGripOut( m_clawGripSubsystem ).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
                         
                         
