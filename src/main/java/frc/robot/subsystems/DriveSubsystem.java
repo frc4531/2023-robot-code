@@ -103,6 +103,10 @@ public class DriveSubsystem extends SubsystemBase {
         TankDriveTrain.arcadeDrive(Forward, Turn);
     }
 
+    public void DifferentialDriveRobot(double Left, double Right){
+        TankDriveTrain.tankDrive(Left, Right);
+    }
+
     public void shiftToTank() {
         shiftSolenoid.set(Value.kReverse);
     }
