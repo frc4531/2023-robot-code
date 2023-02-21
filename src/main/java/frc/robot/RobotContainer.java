@@ -3,13 +3,10 @@ package frc.robot;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command.InterruptionBehavior;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.subsystems.*;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -24,7 +21,6 @@ public class RobotContainer {
   // The robot's subsystems
   public final CompressorSubsystem m_compressorSubsystem = new CompressorSubsystem();
   public final VisionSubsystem m_visionSubsystem = new VisionSubsystem();
-  public final ClawSpinSubsystem m_clawSpinSubsystem = new ClawSpinSubsystem();
   public final ClawGripSubsystem m_clawGripSubsystem = new ClawGripSubsystem();
   public final ScissorLiftSubsystem m_scissorLiftSubsystem = new ScissorLiftSubsystem();
   public final LinearLiftSubsystem m_linearLiftSubsystem = new LinearLiftSubsystem();
@@ -51,7 +47,6 @@ public class RobotContainer {
 
     // Configure default commands
     m_driveSubsystem.setDefaultCommand(new DriveCommand( m_driveSubsystem ));
-    m_compressorSubsystem.setDefaultCommand(new CompressorCompress( m_compressorSubsystem ));
 
     // Configure autonomous sendable chooser
 
@@ -93,11 +88,6 @@ public class RobotContainer {
     final JoystickButton clawGripOutButton = new JoystickButton(nesStick, 6);        
     clawGripOutButton.onTrue(new ClawGripOut( m_clawGripSubsystem ).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
                         
-    final JoystickButton clawSpinDownButton = new JoystickButton(nesStick, 7);        
-    clawSpinDownButton.whileTrue(new ClawSpinDown( m_clawSpinSubsystem ).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
-                        
-    final JoystickButton clawSpinUpButton = new JoystickButton(nesStick, 8);        
-    clawSpinUpButton.whileTrue(new ClawSpinUp( m_clawSpinSubsystem ).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
                         
   }
 
