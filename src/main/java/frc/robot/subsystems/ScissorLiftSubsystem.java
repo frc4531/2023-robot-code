@@ -31,6 +31,10 @@ public class ScissorLiftSubsystem extends SubsystemBase {
         scissorLiftMotor.set(Speed);
     }
 
+    public int GetPostion() {
+        return 0;
+
+    }
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
