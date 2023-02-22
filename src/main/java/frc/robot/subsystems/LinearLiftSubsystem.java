@@ -31,6 +31,10 @@ public class LinearLiftSubsystem extends SubsystemBase {
         linearPulleyMotor.set(Speed);
     }
 
+    public int GetPosition() {
+        return 0;
+
+    }
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
