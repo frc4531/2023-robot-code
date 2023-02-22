@@ -9,6 +9,13 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public class Constants {
+
+    public static final int INCHES_TO_TICKS_AMT (double DistanceInInches) {
+        double Top = DistanceInInches*100;
+        double Bottom = 6;
+        double Result = ((Top/Bottom)*Math.PI);
+        return (int)Result;
+    }
    /**
     * public static final class DriveConstants {
     *   public static final int kLeftMotor1Port = 0;
