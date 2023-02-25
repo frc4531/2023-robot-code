@@ -87,8 +87,18 @@ public class RobotContainer {
                         
     final JoystickButton clawGripOutButton = new JoystickButton(nesStick, 10);        
     clawGripOutButton.onTrue(new ClawGripOut( m_clawGripSubsystem ).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
-                        
-                        
+
+    final JoystickButton LinearLiftGroundStageButton = new JoystickButton(nesStick, 2);        
+    LinearLiftGroundStageButton.onTrue(new LinearLiftToPosition( m_linearLiftSubsystem, 0 ).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
+
+    final JoystickButton LinearLiftLowStageButton = new JoystickButton(nesStick, 1);        
+    LinearLiftLowStageButton.onTrue(new LinearLiftToPosition( m_linearLiftSubsystem, 1 ).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
+
+    final JoystickButton LinearLiftMediumStageButton = new JoystickButton(nesStick, 4);        
+    LinearLiftMediumStageButton.onTrue(new LinearLiftToPosition( m_linearLiftSubsystem, 2 ).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
+
+    final JoystickButton LinearLiftHighStageButton = new JoystickButton(nesStick, 3);        
+    LinearLiftHighStageButton.onTrue(new LinearLiftToPosition( m_linearLiftSubsystem, 3 ).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
   }
 
   public Joystick getDriveStick() {
