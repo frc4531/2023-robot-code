@@ -7,16 +7,16 @@ public class LinearLiftToPosition extends CommandBase {
 
     private final LinearLiftSubsystem m_linearLiftSubsystem;
 
-    double liftPosition;
+    int targetPosition;
     double liftSpeed = 0.5;
     double movementThreshold = 10;
 
-    public LinearLiftToPosition(LinearLiftSubsystem subsystem, double liftPosition) {
+    public LinearLiftToPosition(LinearLiftSubsystem subsystem, int pos) {
 
         m_linearLiftSubsystem = subsystem;
         addRequirements(m_linearLiftSubsystem);
 
-        this.liftPosition = liftPosition;
+        this.targetPosition = pos;
 
     }
 
@@ -28,15 +28,10 @@ public class LinearLiftToPosition extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        if (m_linearLiftSubsystem.GetPosition() < liftPosition) {
-            m_linearLiftSubsystem.SetLinearLiftMotors(liftSpeed);
-        } else if (m_linearLiftSubsystem.GetPosition() > liftPosition) {
-            m_linearLiftSubsystem.SetLinearLiftMotors(-liftSpeed);
-        } else {
-            m_linearLiftSubsystem.SetLinearLiftMotors(0);
-        }
         
     }
+
+
 
     // Called once the command ends or is interrupted.
     @Override
@@ -47,7 +42,7 @@ public class LinearLiftToPosition extends CommandBase {
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        return ((m_linearLiftSubsystem.GetPosition() < liftPosition + movementThreshold) && (m_linearLiftSubsystem.GetPosition() > liftPosition - movementThreshold));
+        return false;
     }
 
     @Override
