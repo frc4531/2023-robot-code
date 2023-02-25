@@ -10,6 +10,7 @@ public class LinearLiftToPosition extends CommandBase {
     int targetPosition;
     double liftSpeed = 0.5;
     double movementThreshold = 10;
+    boolean IsCentering;
 
     public LinearLiftToPosition(LinearLiftSubsystem subsystem, int pos) {
 
@@ -23,6 +24,12 @@ public class LinearLiftToPosition extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
+        if(targetPosition == m_linearLiftSubsystem.GetStage()) {
+            IsCentering = true;
+        } else {
+            IsCentering = false;
+        }
+
     }
 
     // Called every time the scheduler runs while the command is scheduled.
