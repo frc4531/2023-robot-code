@@ -1,6 +1,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
@@ -19,10 +20,10 @@ public class LinearLiftSubsystem extends SubsystemBase {
     public LinearLiftSubsystem() {
         linearPulleyMotor = new WPI_TalonFX(9);
         linearPulleyMotor.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor);
-        GroundSwitch = new DigitalInput(4);
-        LowSwitch = new DigitalInput(5);
-        MediumSwitch = new DigitalInput(6);
-        HighSwitch = new DigitalInput(7);
+        GroundSwitch = new DigitalInput(14);
+        LowSwitch = new DigitalInput(15);
+        MediumSwitch = new DigitalInput(16);
+        HighSwitch = new DigitalInput(17);
 
 
     }
@@ -30,13 +31,18 @@ public class LinearLiftSubsystem extends SubsystemBase {
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
-        if (GroundSwitch.get()) {
+        SmartDashboard.putBoolean("Ground Switch Triggered", ReadGroundSwitch());
+        SmartDashboard.putBoolean("Low Switch Triggered", ReadLowSwitch());
+        SmartDashboard.putBoolean("Medium Switch Triggered", ReadMediumSwitch());
+        SmartDashboard.putBoolean("High Switch Triggered", ReadHighSwitch());
+
+        if (ReadGroundSwitch()) {
             CurrentPosition = 0;
-        } else if (LowSwitch.get()) {
+        } else if (ReadLowSwitch()) {
             CurrentPosition = 1;
-        } else if (MediumSwitch.get()) {
+        } else if (ReadMediumSwitch()) {
             CurrentPosition = 2;
-        } else if (HighSwitch.get()) {
+        } else if (ReadHighSwitch()) {
             CurrentPosition = 3;
         }
 
@@ -78,19 +84,19 @@ public class LinearLiftSubsystem extends SubsystemBase {
     }
 
     public boolean ReadGroundSwitch() {
-        return GroundSwitch.get();
+        return !GroundSwitch.get();
     }
 
     public boolean ReadLowSwitch() {
-        return LowSwitch.get();
+        return !LowSwitch.get();
     }
 
     public boolean ReadMediumSwitch() {
-        return MediumSwitch.get();
+        return !MediumSwitch.get();
     }
 
     public boolean ReadHighSwitch() {
-        return HighSwitch.get();
+        return !HighSwitch.get();
     }
 
     public int GetCurrentPosition() {

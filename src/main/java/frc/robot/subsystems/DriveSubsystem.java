@@ -1,6 +1,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.kauailabs.navx.frc.AHRS;
@@ -31,7 +32,7 @@ public class DriveSubsystem extends SubsystemBase {
     public DriveSubsystem() {
         DriveGyro = new AHRS(SerialPort.Port.kUSB);
 
-        DriveEncoder = new Encoder(0, 1, false, EncodingType.k4X);
+        DriveEncoder = new Encoder(12, 13, false, EncodingType.k4X);
 
         shiftSolenoid = new DoubleSolenoid(PneumaticsModuleType.REVPH, 2, 3);
         addChild("ShiftSolenoid", shiftSolenoid);
@@ -68,7 +69,7 @@ public class DriveSubsystem extends SubsystemBase {
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
-
+        SmartDashboard.putNumber("DriveEncoder", GetPosition());
     }
 
     @Override
