@@ -20,7 +20,6 @@ public class DriveCommand extends CommandBase {
     @Override
     public void initialize() {
         m_driveSubsystem.shiftToMecanum();
-        m_driveSubsystem.ResetEncoder();
     }
 
     // Called every time the scheduler runs while the command is scheduled.

@@ -10,7 +10,7 @@ public class ScissorLiftSubsystem extends SubsystemBase {
 
     public ScissorLiftSubsystem() {
         scissorLiftMotor = new CANSparkMax(1,MotorType.kBrushless);
-        scissorLiftMotor.setInverted(false);
+        scissorLiftMotor.setInverted(true);
 
 
     }

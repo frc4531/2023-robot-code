@@ -98,6 +98,10 @@ public class DriveSubsystem extends SubsystemBase {
         mecanumDriveTrain.driveCartesian(Forward, Strafe, Turn);
     }
 
+    public void SlowMecanumDriveRobot(double Forward, double Strafe, double Turn) {
+        mecanumDriveTrain.driveCartesian(Forward*0.2, Strafe*0.2, Turn*0.2);
+    }
+
     public void TankDriveRobot(double Forward, double Turn) {
         TankDriveTrain.arcadeDrive(Forward, Turn);
     }

@@ -35,6 +35,7 @@ public class LinearLiftSubsystem extends SubsystemBase {
         SmartDashboard.putBoolean("Low Switch Triggered", ReadLowSwitch());
         SmartDashboard.putBoolean("Medium Switch Triggered", ReadMediumSwitch());
         SmartDashboard.putBoolean("High Switch Triggered", ReadHighSwitch());
+        SmartDashboard.putNumber("LiftStageNumber", CurrentPosition);
 
         if (ReadGroundSwitch()) {
             CurrentPosition = 0;
