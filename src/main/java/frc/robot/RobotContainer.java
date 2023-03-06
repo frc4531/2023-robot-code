@@ -3,6 +3,7 @@ package frc.robot;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command.InterruptionBehavior;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj.Joystick;
@@ -50,9 +51,10 @@ public class RobotContainer {
 
     // Configure autonomous sendable chooser
 
-    //m_chooser.setDefaultOption("$command.getName()", new ${name.replace(' ', '')}( m_${name.substring(0,1).toLowerCase()}${name.substring(1).replace(' ', '')} ));
+    m_chooser.setDefaultOption("Drive Straight", new AutoCommand(m_driveSubsystem));
+    m_chooser.addOption("Do Nothing", new DriveCommand(m_driveSubsystem));
 
-    //SmartDashboard.putData("Auto Mode", m_chooser);
+    SmartDashboard.putData("Auto Commandss", m_chooser);
   }
 
   public static RobotContainer getInstance() {
@@ -92,15 +94,15 @@ public class RobotContainer {
     clawGripOutButton.onTrue(new ClawGripOut( m_clawGripSubsystem ).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
 
     final JoystickButton LinearLiftGroundStageButton = new JoystickButton(nesStick, 2);        
-    LinearLiftGroundStageButton.onTrue(new LinearLiftToPosition( m_linearLiftSubsystem, 0 ).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
+    //LinearLiftGroundStageButton.onTrue(new LinearLiftToPosition( m_linearLiftSubsystem, 0 ).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
 
     final JoystickButton LinearLiftLowStageButton = new JoystickButton(nesStick, 1);        
     LinearLiftLowStageButton.onTrue(new LinearLiftToPosition( m_linearLiftSubsystem, 1 ).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
 
-    final JoystickButton LinearLiftMediumStageButton = new JoystickButton(nesStick, 4);        
+    final JoystickButton LinearLiftMediumStageButton = new JoystickButton(nesStick, 3);        
     LinearLiftMediumStageButton.onTrue(new LinearLiftToPosition( m_linearLiftSubsystem, 2 ).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
 
-    final JoystickButton LinearLiftHighStageButton = new JoystickButton(nesStick, 3);        
+    final JoystickButton LinearLiftHighStageButton = new JoystickButton(nesStick, 5);        
     LinearLiftHighStageButton.onTrue(new LinearLiftToPosition( m_linearLiftSubsystem, 3 ).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
   }
 
@@ -119,6 +121,7 @@ public class RobotContainer {
   */
   public Command getAutonomousCommand() {
     // The selected command will be run in autonomous
+    //return new AutoCommand(m_driveSubsystem);
     return m_chooser.getSelected();
   }
   

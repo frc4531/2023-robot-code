@@ -3,6 +3,9 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -32,7 +35,7 @@ public class DriveSubsystem extends SubsystemBase {
     public DriveSubsystem() {
         DriveGyro = new AHRS(SerialPort.Port.kUSB);
 
-        DriveEncoder = new Encoder(12, 13, false, EncodingType.k4X);
+        DriveEncoder = new Encoder(12, 13, true, EncodingType.k4X);
 
         shiftSolenoid = new DoubleSolenoid(PneumaticsModuleType.REVPH, 2, 3);
         addChild("ShiftSolenoid", shiftSolenoid);
@@ -45,6 +48,8 @@ public class DriveSubsystem extends SubsystemBase {
     
         backLeft = new WPI_TalonFX(7);
         backLeft.setInverted(true);
+        backLeft.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor);
+
     
         backRight = new WPI_TalonFX(8);
     
@@ -79,11 +84,15 @@ public class DriveSubsystem extends SubsystemBase {
     }
 
     public double GetPosition() {
-        return DriveEncoder.getDistance();
+        //return DriveEncoder.getDistance();
+        return -(backLeft.getSelectedSensorPosition());
+
     }
 
     public void ResetEncoder() {
-        DriveEncoder.reset();
+        //DriveEncoder.reset();
+        backLeft.setSelectedSensorPosition(0);
+
     }
 
     public double ReadHeading() {
@@ -99,7 +108,7 @@ public class DriveSubsystem extends SubsystemBase {
     }
 
     public void SlowMecanumDriveRobot(double Forward, double Strafe, double Turn) {
-        mecanumDriveTrain.driveCartesian(Forward*0.2, Strafe*0.2, Turn*0.2);
+        mecanumDriveTrain.driveCartesian(Forward*0.4, Strafe*0.4, Turn*0.3);
     }
 
     public void TankDriveRobot(double Forward, double Turn) {
@@ -112,10 +121,18 @@ public class DriveSubsystem extends SubsystemBase {
 
     public void shiftToTank() {
         shiftSolenoid.set(Value.kReverse);
+        frontLeft.setNeutralMode(NeutralMode.Brake);
+        frontRight.setNeutralMode(NeutralMode.Brake);
+        backLeft.setNeutralMode(NeutralMode.Brake);
+        backRight.setNeutralMode(NeutralMode.Brake);
     }
 
     public void shiftToMecanum() {
         shiftSolenoid.set(Value.kForward);
+        frontLeft.setNeutralMode(NeutralMode.Coast);
+        frontRight.setNeutralMode(NeutralMode.Coast);
+        backLeft.setNeutralMode(NeutralMode.Coast);
+        backRight.setNeutralMode(NeutralMode.Coast);
     }
     // Put methods for controlling this subsystem
     // here. Call these from Commands.

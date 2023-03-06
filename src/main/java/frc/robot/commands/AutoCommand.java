@@ -10,7 +10,7 @@ public class AutoCommand extends SequentialCommandGroup {
 
         addCommands(
 
-            new DriveToPosition(Drive, Constants.INCHES_TO_TICKS_AMT(181.435))
+            new DriveToPosition(Drive, 115000) //9 rotations
             // Add Commands here:
             // Also add parallel commands using the
             //

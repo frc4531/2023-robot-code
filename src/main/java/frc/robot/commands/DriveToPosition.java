@@ -28,8 +28,8 @@ public class DriveToPosition extends CommandBase {
         m_driveSubsystem.ResetGyro(); //Reset gyro to zero degrees
         m_driveSubsystem.ResetEncoder(); //Start by reseting encoder to zero
 
-        BaseSpeed = Preferences.getDouble("StraightGyro-BaseSpeed", 0.1); //Set our base speed on Robot Preferences
-        MaxSpeed = Preferences.getDouble("StraightGyro-MaxSpeed", 0.1); //Set our max speed on Robot Preferences
+        BaseSpeed = Preferences.getDouble("StraightGyro-BaseSpeed", 0.3); //Set our base speed on Robot Preferences
+        MaxSpeed = Preferences.getDouble("StraightGyro-MaxSpeed", 0.6); //Set our max speed on Robot Preferences
 
         CurrentSpeed = BaseSpeed; //sets our current speed to the base (slowest) speed
     }
@@ -53,7 +53,7 @@ public class DriveToPosition extends CommandBase {
         Double left = (CurrentSpeed + (0.025 * Heading)); //slightly adjust left side based on current angle
         Double right = (CurrentSpeed + (0.025 * Heading)); //slightly adjust right side based on current angle
 
-        m_driveSubsystem.DifferentialDriveRobot(left, right);
+        m_driveSubsystem.DifferentialDriveRobot(-left, -right);
     }
 
     // Called once the command ends or is interrupted.
@@ -65,7 +65,7 @@ public class DriveToPosition extends CommandBase {
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        return m_driveSubsystem.GetPosition() < Distance; //finish command if we have reached our final destination
+        return m_driveSubsystem.GetPosition() >= Distance; //finish command if we have reached our final destination
     }
 
     @Override

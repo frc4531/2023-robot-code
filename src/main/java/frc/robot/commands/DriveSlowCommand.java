@@ -25,7 +25,7 @@ public class DriveSlowCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_driveSubsystem.SlowMecanumDriveRobot(RobotContainer.getInstance().getDriveStick().getY(), -RobotContainer.getInstance().getDriveStick().getX(), -RobotContainer.getInstance().getDriveStick().getZ()*0.4);
+    m_driveSubsystem.SlowMecanumDriveRobot(RobotContainer.getInstance().getDriveStick().getY(), -RobotContainer.getInstance().getDriveStick().getX(), -RobotContainer.getInstance().getDriveStick().getZ());
   }
 
   // Called once the command ends or is interrupted.
