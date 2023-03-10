@@ -75,6 +75,8 @@ public class DriveSubsystem extends SubsystemBase {
     public void periodic() {
         // This method will be called once per scheduler run
         SmartDashboard.putNumber("DriveEncoder", GetPosition());
+        SmartDashboard.putNumber("Gyro Heading", ReadHeading());
+        SmartDashboard.putNumber("Gyro Pitch", ReadPitch());
     }
 
     @Override
@@ -97,6 +99,10 @@ public class DriveSubsystem extends SubsystemBase {
 
     public double ReadHeading() {
         return DriveGyro.getYaw();
+    }
+
+    public double ReadPitch() {
+        return DriveGyro.getPitch();
     }
 
     public void ResetGyro() {
