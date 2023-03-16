@@ -83,7 +83,10 @@ public class RobotContainer {
                         
     final JoystickButton linearLiftDownButton = new JoystickButton(nesStick, 8);        
     linearLiftDownButton.whileTrue(new LinearLiftDown( m_linearLiftSubsystem ).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
-                        
+                       
+    final JoystickButton ResetGyroButton = new JoystickButton(nesStick, 11);        
+    ResetGyroButton.onTrue(new DriveResetGyro( m_driveSubsystem ).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
+
     final JoystickButton scissorLiftInButton = new JoystickButton(nesStick, 12);        
     scissorLiftInButton.whileTrue(new ScissorLiftIn( m_scissorLiftSubsystem ).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
                         

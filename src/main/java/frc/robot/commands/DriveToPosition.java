@@ -50,7 +50,7 @@ public class DriveToPosition extends CommandBase {
 
         SmartDashboard.putNumber("StraightGyro-CurrentSpeed", CurrentSpeed);
 
-        Double left = (CurrentSpeed + (0.025 * Heading)); //slightly adjust left side based on current angle
+        Double left = (CurrentSpeed - (0.025 * Heading)); //slightly adjust left side based on current angle
         Double right = (CurrentSpeed + (0.025 * Heading)); //slightly adjust right side based on current angle
 
         m_driveSubsystem.DifferentialDriveRobot(-left, -right);

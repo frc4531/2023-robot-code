@@ -10,7 +10,10 @@ public class AutoCommand extends SequentialCommandGroup {
 
         addCommands(
 
-            new DriveToPosition(Drive, 115000) //9 rotations
+            //new DriveToPosition(Drive, 115000) //9 rotations
+            
+            new DriveToTargetPitch(Drive, 8)
+
             // Add Commands here:
             // Also add parallel commands using the
             //
