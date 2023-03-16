@@ -35,7 +35,7 @@ public class DriveSubsystem extends SubsystemBase {
     public DriveSubsystem() {
         DriveGyro = new AHRS(SerialPort.Port.kUSB);
 
-        DriveEncoder = new Encoder(12, 13, true, EncodingType.k4X);
+        //DriveEncoder = new Encoder(12, 13, true, EncodingType.k4X);
 
         shiftSolenoid = new DoubleSolenoid(PneumaticsModuleType.REVPH, 2, 3);
         addChild("ShiftSolenoid", shiftSolenoid);
@@ -76,6 +76,7 @@ public class DriveSubsystem extends SubsystemBase {
         // This method will be called once per scheduler run
         SmartDashboard.putNumber("DriveEncoder", GetPosition());
         SmartDashboard.putNumber("Gyro Heading", ReadHeading());
+        SmartDashboard.putNumber("Gyro Roll", ReadRoll());
         SmartDashboard.putNumber("Gyro Pitch", ReadPitch());
     }
 
@@ -105,8 +106,13 @@ public class DriveSubsystem extends SubsystemBase {
         return DriveGyro.getPitch();
     }
 
+    public double ReadRoll() {
+        return DriveGyro.getRoll();
+    }
+
     public void ResetGyro() {
         DriveGyro.zeroYaw();
+        DriveGyro.reset();
     }
 
     public void MecanumDriveRobot(double Forward, double Strafe, double Turn) {

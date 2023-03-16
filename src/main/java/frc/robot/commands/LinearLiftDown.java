@@ -22,7 +22,11 @@ public class LinearLiftDown extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        m_linearLiftSubsystem.SetLinearLiftMotors(-0.55);
+        if (!m_linearLiftSubsystem.ReadGroundSwitch()) {
+            m_linearLiftSubsystem.SetLinearLiftMotors(-0.55);
+        } else {
+            m_linearLiftSubsystem.SetLinearLiftMotors(0);
+        }
     }
 
     // Called once the command ends or is interrupted.

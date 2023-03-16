@@ -74,6 +74,9 @@ public class RobotContainer {
 
     final JoystickButton SlowMecanumDriveButton = new JoystickButton(driveStick, 1);        
     SlowMecanumDriveButton.whileTrue(new DriveSlowCommand( m_driveSubsystem ).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
+
+    final JoystickButton PIDTestButton = new JoystickButton(driveStick, 5);        
+    PIDTestButton.whileTrue(new DriveToPosWithPID( m_driveSubsystem, 0 ).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
                         
     final JoystickButton linearLiftUpButton = new JoystickButton(nesStick, 7);        
     linearLiftUpButton.whileTrue(new LinearLiftUp( m_linearLiftSubsystem ).withInterruptBehavior(InterruptionBehavior.kCancelSelf));

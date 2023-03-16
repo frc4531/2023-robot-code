@@ -20,7 +20,7 @@ public class LinearLiftSubsystem extends SubsystemBase {
     public LinearLiftSubsystem() {
         linearPulleyMotor = new WPI_TalonFX(9);
         linearPulleyMotor.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor);
-        GroundSwitch = new DigitalInput(14);
+        GroundSwitch = new DigitalInput(12);
         LowSwitch = new DigitalInput(15);
         MediumSwitch = new DigitalInput(16);
         HighSwitch = new DigitalInput(17);
