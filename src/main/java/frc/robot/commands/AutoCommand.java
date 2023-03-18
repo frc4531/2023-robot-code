@@ -1,5 +1,6 @@
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Constants;
@@ -13,10 +14,11 @@ public class AutoCommand extends SequentialCommandGroup {
 
             //new DriveToPosition(Drive, 115000) //9 rotations
             
+            Commands.deadline(new WaitCommand(1), new DriveBackToTargetPitch(Drive, 45)),
             new DriveToTargetPitch(Drive, 8),
-            new WaitCommand(2),
-            new DriveBackToTargetPitch(Drive, 9),
-            new DriveBackToPosition(Drive, -43000)
+            new WaitCommand(1.5),
+            new DriveBackToTargetPitch(Drive, 11),
+            new BalanceWithPIDAndGyro(Drive, 0)
 
             // Add Commands here:
             // Also add parallel commands using the
