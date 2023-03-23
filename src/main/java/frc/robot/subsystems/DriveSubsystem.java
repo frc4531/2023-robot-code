@@ -1,8 +1,10 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
+import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.RobotContainer;
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
@@ -30,6 +32,8 @@ public class DriveSubsystem extends SubsystemBase {
     private MotorControllerGroup RightSide;
     private AHRS DriveGyro;
     private Encoder DriveEncoder;
+    private double ledValue;
+    private PWMSparkMax LEDBlinkin;
 
 
     public DriveSubsystem() {
@@ -53,7 +57,7 @@ public class DriveSubsystem extends SubsystemBase {
     
         backRight = new WPI_TalonFX(8);
     
-    
+        
 
         mecanumDriveTrain = new MecanumDrive(frontLeft, backLeft,frontRight, backRight);
         addChild("MecanumDriveTrain",mecanumDriveTrain);
@@ -69,6 +73,8 @@ public class DriveSubsystem extends SubsystemBase {
         TankDriveTrain.setSafetyEnabled(true);
         TankDriveTrain.setExpiration(0.1);
         TankDriveTrain.setMaxOutput(0.9);
+
+        LEDBlinkin = new PWMSparkMax(13);
     }
 
     @Override
@@ -78,12 +84,32 @@ public class DriveSubsystem extends SubsystemBase {
         SmartDashboard.putNumber("Gyro Heading", ReadHeading());
         SmartDashboard.putNumber("Gyro Roll", ReadRoll());
         SmartDashboard.putNumber("Gyro Pitch", ReadPitch());
+
+        if (GetDriveStickButtonPressed(2)) {
+            setLEDs(0.69); //Yellow
+        } else if(GetDriveStickButtonPressed(3)) {
+            setLEDs(0.91); //Purple
+        } else if(GetDriveStickButtonPressed(4)) {
+            setLEDs(0.99); //Off
+        }
+        
     }
 
     @Override
     public void simulationPeriodic() {
         // This method will be called once per scheduler run when in simulation
 
+    }
+
+    public void setLEDs(double val) {
+        if (ledValue != val) {
+            ledValue = val;
+            LEDBlinkin.set(val);
+        }
+    }
+
+    public boolean GetDriveStickButtonPressed(int buttonNumber) {
+        return RobotContainer.getInstance().getDriveStick().getRawButtonPressed(buttonNumber);
     }
 
     public double GetPosition() {
