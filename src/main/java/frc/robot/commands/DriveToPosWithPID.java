@@ -45,12 +45,14 @@ public class DriveToPosWithPID extends PIDCommand {
     m_controller.reset();
     m_driveSubsystem.ResetEncoder();
     m_driveSubsystem.shiftToTank();
+    m_driveSubsystem.setLEDs(-0.21);
   }
 
   @Override
   public void end(boolean interrupted) {
     m_useOutput.accept(0);
     m_driveSubsystem.shiftToMecanum();
+    m_driveSubsystem.setLEDs(0.99);
   }
   // Returns true when the command should end.
   @Override
