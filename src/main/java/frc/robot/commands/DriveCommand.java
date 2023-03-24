@@ -8,6 +8,7 @@ import frc.robot.subsystems.DriveSubsystem;
 public class DriveCommand extends CommandBase {
 
     private final DriveSubsystem m_driveSubsystem;
+    boolean isFieldRelative = true;
 
     public DriveCommand(DriveSubsystem subsystem) {
 
@@ -25,7 +26,22 @@ public class DriveCommand extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        m_driveSubsystem.MecanumDriveRobot(RobotContainer.getInstance().getDriveStick().getY(), -RobotContainer.getInstance().getDriveStick().getX(), -RobotContainer.getInstance().getDriveStick().getZ()*0.4);
+        if (isFieldRelative) {
+            double forward = RobotContainer.getInstance().getDriveStick().getY();
+            double strafe = -RobotContainer.getInstance().getDriveStick().getX();
+            double rot = -RobotContainer.getInstance().getDriveStick().getZ()*0.4;
+            double GyroDegrees = m_driveSubsystem.ReadHeading();
+            double GyroRadians = GyroDegrees * (Math.PI / 180);
+
+            double temp = (forward * Math.cos(GyroRadians)) + (strafe * Math.sin(GyroRadians));
+            strafe = (-forward * Math.sin(GyroRadians) + (strafe * Math.cos(GyroRadians)));
+            forward = temp;
+
+            m_driveSubsystem.MecanumDriveRobot(forward, strafe, rot);
+        } else {
+            m_driveSubsystem.MecanumDriveRobot(RobotContainer.getInstance().getDriveStick().getY(), -RobotContainer.getInstance().getDriveStick().getX(), -RobotContainer.getInstance().getDriveStick().getZ()*0.4);
+
+        }
     }
 
     // Called once the command ends or is interrupted.
