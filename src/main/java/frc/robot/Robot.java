@@ -54,6 +54,7 @@ public class Robot extends TimedRobot {
     */
     @Override
     public void disabledInit() {
+        m_robotContainer.m_driveSubsystem.setLEDs(-0.19);
     }
 
     @Override
