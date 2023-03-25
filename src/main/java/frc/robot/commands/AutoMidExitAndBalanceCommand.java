@@ -6,9 +6,9 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Constants;
 import frc.robot.subsystems.DriveSubsystem;
 
-public class AutoCommand extends SequentialCommandGroup {
+public class AutoMidExitAndBalanceCommand extends SequentialCommandGroup {
 
-    public AutoCommand(DriveSubsystem Drive){
+    public AutoMidExitAndBalanceCommand(DriveSubsystem Drive){
 
         addCommands(
 

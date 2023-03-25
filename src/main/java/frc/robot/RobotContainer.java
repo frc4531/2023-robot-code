@@ -51,7 +51,9 @@ public class RobotContainer {
 
     // Configure autonomous sendable chooser
 
-    m_chooser.setDefaultOption("Drive Straight", new AutoCommand(m_driveSubsystem));
+    m_chooser.setDefaultOption("Middle Exit and Balance", new AutoMidExitAndBalanceCommand(m_driveSubsystem));
+    m_chooser.addOption("Sides Exit", new AutoSidesCommand(m_driveSubsystem));
+    m_chooser.addOption("Middle Balance Only", new AutoMidBalanceOnlyCommand(m_driveSubsystem));
     m_chooser.addOption("Do Nothing", new DriveCommand(m_driveSubsystem));
 
     SmartDashboard.putData("Auto Commandss", m_chooser);
@@ -69,8 +71,11 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     // Create some buttons
-    final JoystickButton driveShiftButton = new JoystickButton(driveStick, 7);        
+    final JoystickButton driveShiftButton = new JoystickButton(driveStick, 8);        
     driveShiftButton.toggleOnTrue(new DriveShift( m_driveSubsystem ).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
+
+    final JoystickButton driveCentricButton = new JoystickButton(driveStick, 7);        
+    driveCentricButton.toggleOnTrue(new DriveCentricCommand( m_driveSubsystem ).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
 
     final JoystickButton SlowMecanumDriveButton = new JoystickButton(driveStick, 1);        
     SlowMecanumDriveButton.whileTrue(new DriveSlowCommand( m_driveSubsystem ).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
