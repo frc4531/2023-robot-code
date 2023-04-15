@@ -54,9 +54,9 @@ public class RobotContainer {
     m_chooser.setDefaultOption("Middle Exit and Balance", new AutoMidExitAndBalanceCommand(m_driveSubsystem));
     m_chooser.addOption("Sides Exit", new AutoSidesCommand(m_driveSubsystem));
     m_chooser.addOption("Middle Balance Only", new AutoMidBalanceOnlyCommand(m_driveSubsystem));
-    m_chooser.addOption("Do Nothing", new DriveCommand(m_driveSubsystem));
+    m_chooser.addOption("Score Only", new AutoScoreOnly(m_driveSubsystem));
 
-    SmartDashboard.putData("Auto Commandss", m_chooser);
+    SmartDashboard.putData("Auto Commandsss", m_chooser);
   }
 
   public static RobotContainer getInstance() {

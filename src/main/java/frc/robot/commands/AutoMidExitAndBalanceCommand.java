@@ -17,7 +17,7 @@ public class AutoMidExitAndBalanceCommand extends SequentialCommandGroup {
             Commands.deadline(new WaitCommand(1), new DriveBackToTargetPitch(Drive, 45)),
             new DriveToTargetPitch(Drive, 8),
             new WaitCommand(1.5),
-            new DriveBackToTargetPitch(Drive, 11),
+            new DriveBackToTargetPitch(Drive, 12),
             new BalanceWithPIDAndGyro(Drive, 0)
 
             // Add Commands here:

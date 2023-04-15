@@ -55,7 +55,7 @@ public class DriveSubsystem extends SubsystemBase {
         backLeft.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor);
 
     
-        backRight = new WPI_TalonFX(8);
+        backRight = new WPI_TalonFX(4);
     
         
 
@@ -70,7 +70,7 @@ public class DriveSubsystem extends SubsystemBase {
 
         TankDriveTrain = new DifferentialDrive(LeftSide, RightSide);
         addChild("TankDriveTrain", TankDriveTrain);
-        TankDriveTrain.setSafetyEnabled(true);
+        TankDriveTrain.setSafetyEnabled(false);
         TankDriveTrain.setExpiration(0.1);
         TankDriveTrain.setMaxOutput(0.9);
 

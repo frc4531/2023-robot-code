@@ -19,16 +19,27 @@ public class BalanceWithPIDAndGyro extends PIDCommand {
   public BalanceWithPIDAndGyro(DriveSubsystem subsystem, double TargetPoint) {
     super(
         // The controller that the command will use
-        new PIDController(0.035, 0, 0),
+        new PIDController(0.038, 0, 0),
         // This should return the measurement
         () -> subsystem.ReadPitch(),
         // This should return the setpoint (can also be a constant)
         () -> TargetPoint,
         // This uses the output
         output -> {
+          //double multiplier = SmartDashboard.getNumber("Balance Speed", 0.85);
+          //double temp = output*multiplier;
+          
+          //if (temp > 0.38) {
+          //  temp = 0.38;
+          //} else if (temp < -0.38) {
+          //  temp = -0.38;
+          //}
+
+          //subsystem.TankDriveRobot(-temp, 0);
+          //SmartDashboard.putNumber("Test PID Output", temp);
+          // Use the output here
           subsystem.TankDriveRobot(-output, 0);
           SmartDashboard.putNumber("Test PID Output", output);
-          // Use the output here
         },
         subsystem
         );
